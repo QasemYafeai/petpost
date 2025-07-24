@@ -1,15 +1,35 @@
-body            { font-family: system-ui, sans-serif; margin: 2rem; }
-h1              { margin-bottom: 1.5rem; }
+
+body        { font-family: system-ui, sans-serif; margin: 2rem; }
+h1          { margin-bottom: 1.5rem; }
+
 
 form input,
-form button     { padding: .45rem .6rem; margin: .25rem .2rem .25rem 0; }
-button          { cursor: pointer; }
+form button { padding:.45rem .6rem; margin:.25rem .3rem .25rem 0; }
+button      { cursor:pointer; }
 
-.pets           { display: flex; flex-wrap: wrap; gap: 1rem; }
 
-.card           { border: 1px solid #ddd; border-radius: 6px;
-                  width: 200px; padding: .5rem; text-align: center;
-                  box-shadow: 0 2px 4px rgba(0,0,0,.05); }
+.pets           { 
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap:1rem;
+}
 
-.card img       { width: 100%; height: 180px; object-fit: cover;
-                  border-radius: 4px; }
+.card           {
+  border:1px solid #ddd;
+  border-radius:8px;
+  box-shadow:0 2px 5px rgba(0,0,0,.06);
+  padding:.75rem;
+  text-align:center;
+  background:#fff;
+}
+
+.card img       {
+  width:150px;
+  height:150px;
+  object-fit:cover;       
+  border-radius:6px;
+  margin-bottom:.5rem;
+}
+
+.card h3        { margin:.4rem 0 .2rem; font-size:1.05rem; }
+.card p         { margin:0; font-size:.9rem; line-height:1.3; }

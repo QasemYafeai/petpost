@@ -1,10 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>PetPost</title>
+
+  <!--  This line pulls /public/stylesheets/style.css  -->
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+
 <h1>PetPost</h1>
 
 <form action="/upload" method="POST" enctype="multipart/form-data">
   <input name="name"  placeholder="Name" required>
   <input name="breed" placeholder="Breed" required>
   <input name="age"   type="number" placeholder="Age" required>
-  <input name="photo" type="file" accept="image/*" required>
+  <input name="photo" type="file"  accept="image/*" required>
   <button type="submit">Add pet</button>
 </form>
 
@@ -19,3 +30,6 @@
     </div>
   <% }) %>
 </div>
+
+</body>
+</html>
