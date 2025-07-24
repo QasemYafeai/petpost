@@ -33,31 +33,38 @@ router.get('/', (_req, res) => {
   }));
   res.render('index', { title: 'PetPost', pets: signed });
 });
-
-/* upload a pet */
 router.post('/upload', upload.single('photo'), async (req, res) => {
-  const { name, breed, age } = req.body;
-  if (!req.file) return res.send('No file selected');
+  try {
+    const { name, breed, age } = req.body;
+    if (!req.file) return res.status(400).send('No file');
 
-  const key = `images/${Date.now()}_${req.file.originalname}`;
+    const key = `images/${Date.now()}_${req.file.originalname}`;
 
+    // Skip S3 when BUCKET isn’t set (local dev)
+    if (process.env.BUCKET) {
+      await s3.putObject({
+        Bucket: process.env.BUCKET,
+        Key:    key,
+        Body:   req.file.buffer,
+      }).promise();
+    }
 
-  if (!process.env.BUCKET) {
-    console.log('No BUCKET set locally — skipping S3 upload.');
-  } else {
-    await s3.putObject({
-      Bucket: process.env.BUCKET,
-      Key:    key,
-      Body:   req.file.buffer
-    }).promise();
+    let pets = [];
+    try {
+      const raw = fs.readFileSync(DATA, 'utf8') || '[]';
+      pets = Array.isArray(JSON.parse(raw)) ? JSON.parse(raw) : [];
+    } catch { /* leave pets = [] */ }
+
+    pets.push({ name, breed, age, imageKey: key });
+    fs.writeFileSync(DATA, JSON.stringify(pets, null, 2));
+
+    res.redirect('/');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Upload failed');
   }
-  
-  const pets = JSON.parse(fs.readFileSync(DATA, 'utf8'));
-  pets.push({ name, breed, age, imageKey: key });
-  fs.writeFileSync(DATA, JSON.stringify(pets, null, 2));
-
-  res.redirect('/');
 });
+
 
 
 module.exports = router;
