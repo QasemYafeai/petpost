@@ -1,8 +1,9 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-}
+body        { font-family: system-ui, sans-serif; margin: 2rem; }
+h1          { margin-bottom: 1.5rem; }
+form input,
+form button { padding: 0.4rem 0.6rem; margin-right: 0.4rem; }
+button      { cursor: pointer; }
+.card       { display: inline-block; border: 1px solid #ccc;
+              border-radius: 6px; padding: 1rem; margin: 0.5rem;
+              width: 180px; text-align: center; }
+.card img   { width: 150px; height: 150px; object-fit: cover; }

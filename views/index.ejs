@@ -11,8 +11,10 @@
 <hr>
 
 <% pets.forEach(p => { %>
-  <div>
-    <img src="<%= p.url %>" width="150">
-    <p><%= p.name %> — <%= p.breed %> — <%= p.age %> yrs</p>
+  <div class="card">
+    <img src="<%= p.url %>" alt="<%= p.name %>">
+    <h3><%= p.name %></h3>
+    <p><%= p.breed %><br><%= p.age %> yrs</p>
   </div>
 <% }) %>
+
