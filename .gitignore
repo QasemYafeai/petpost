@@ -1,2 +1,2 @@
-"path/to/badfile.env" 
-".env" 
+node_modules/ 
+.env        
