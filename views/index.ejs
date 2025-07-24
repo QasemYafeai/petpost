@@ -10,11 +10,12 @@
 
 <hr>
 
-<% pets.forEach(p => { %>
-  <div class="card">
-    <img src="<%= p.url %>" alt="<%= p.name %>">
-    <h3><%= p.name %></h3>
-    <p><%= p.breed %><br><%= p.age %> yrs</p>
-  </div>
-<% }) %>
-
+<div class="pets">
+  <% pets.forEach(p => { %>
+    <div class="card">
+      <img src="<%= p.url %>" alt="<%= p.name %>">
+      <h3><%= p.name %></h3>
+      <p><%= p.breed %><br><%= p.age %> yrs</p>
+    </div>
+  <% }) %>
+</div>
