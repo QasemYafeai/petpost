@@ -1,0 +1,18 @@
+<h1>PetPost</h1>
+
+<form action="/upload" method="POST" enctype="multipart/form-data">
+  <input name="name"  placeholder="Name" required>
+  <input name="breed" placeholder="Breed" required>
+  <input name="age"   type="number" placeholder="Age" required>
+  <input name="photo" type="file" accept="image/*" required>
+  <button type="submit">Add pet</button>
+</form>
+
+<hr>
+
+<% pets.forEach(p => { %>
+  <div>
+    <img src="<%= p.url %>" width="150">
+    <p><%= p.name %> — <%= p.breed %> — <%= p.age %> yrs</p>
+  </div>
+<% }) %>
